@@ -66,6 +66,6 @@ Qrcode::render(array(
 
 ## Change Log
 
-#### v0.1.0
+#### v1.0.0
 
 - First release

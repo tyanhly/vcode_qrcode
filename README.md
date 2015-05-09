@@ -21,6 +21,7 @@ Edit require in `composer.json` file.
 You'll then need to run `composer update` 
 
 File: `app/config/app.php` 
+
 Provider:
 ~~~php
 'providers' => array(

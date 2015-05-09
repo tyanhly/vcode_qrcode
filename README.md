@@ -5,8 +5,8 @@
 
 ## Introduction
 
-This is package generate Qrcode using some services like google qrcode. 
-This job help your server don't care about performance to create qr_code - just let service provider care it for us. 
+This is package generate Qrcode using some services like google qrcode. Currently, only support google service. 
+
 Reference https://developers.google.com/chart/infographics/docs/qr_code
 
 ## Installation

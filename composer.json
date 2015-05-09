@@ -1,7 +1,7 @@
 {
     "name": "vcode/qrcode",
     "description": "This is qrcode package. Specially, it fully support for laravel framework",
-    "keywords": ["qrcode", "laravel", "zend"],
+    "keywords": ["qrcode", "laravel"],
     "license": "MIT",
     "authors": [
         {

@@ -1,0 +1,23 @@
+{
+    "name": "vcode/qrcode",
+    "description": "This is qrcode package. Specially, it fully support for laravel framework",
+    "keywords": ["qrcode", "laravel", "zend"],
+    "license": "MIT",
+    ""
+    "authors": [
+        {
+            "name": "Tung Ly",
+            "email": "tyanhly@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Vcode\\Qrcode\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}

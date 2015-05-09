@@ -3,6 +3,12 @@
 
 ----------
 
+## Introduction
+
+This is package generate Qrcode using some services like google qrcode. 
+This job help your server don't care about performance to create qr_code - just let service provider care it for us. 
+Reference https://developers.google.com/chart/infographics/docs/qr_code
+
 ## Installation
 
 
@@ -38,7 +44,7 @@ Create configuration file using artisan
 $ php artisan config:publish vcode/qrcode
 ~~~
 
-## Using
+## Rendering
 ~~~php
 
 //reference https://developers.google.com/chart/infographics/docs/qr_codes
@@ -54,9 +60,7 @@ Qrcode::render(array(
 ));
 ~~~
 
-## Rendering
-
-Using the Blade helper
+## Using the Blade helper
 
 ~~~html
 @qrcode("https://github.com/tyanhly/laravel_qrcode");

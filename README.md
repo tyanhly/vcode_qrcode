@@ -45,24 +45,33 @@ Create configuration file using artisan
 $ php artisan config:publish vcode/qrcode
 ~~~
 
-## Rendering
+## Using
 ~~~php
 
-Qrcode::render("https://github.com/tyanhly/vcode_qrcode")
+$value = "https://github.com/tyanhly/vcode_qrcode";
 
-Qrcode::render(array(
-    'chs' => "250x250",
-    'cht' => "qr",
-    'chl' => "https://github.com/tyanhly/vcode_qrcode"
-    'chld'=> "H|1",         // H(QML)|1, H|2, H|3, H|4, H|10, H|40,
-    'choe'=> "UTF-8"        // UTF-8, Shift_JIS, ISO-8859-1
-));
+//or for fully options
+//$value = array(
+//    'chs' => "250x250",
+//    'cht' => "qr",
+//    'chl' => "https://github.com/tyanhly/vcode_qrcode"
+//    'chld'=> "H|1",         // H(QML)|1, H|2, H|3, H|4, H|10, H|40,
+//    'choe'=> "UTF-8"        // UTF-8, Shift_JIS, ISO-8859-1
+//);
+
+Qrcode::storageImage($value, "/tmp/qrcode1.png");
+Qrcode::render($value);
+Qrcode::renderBase64($value);
+Qrcode::renderBase64Dom($value);
+
 ~~~
 
 ## Using the Blade helper
 
 ~~~html
-@qrcode("https://github.com/tyanhly/vcode_qrcode");
+@qrcode("https://github.com/tyanhly/vcode_qrcode")
+@qrcodeBase64Dom("https://github.com/tyanhly/vcode_qrcode")
+<img src="data:image/png;base64,@qrcodeBase64("https://github.com/tyanhly/vcode_qrcode")" />
 ~~~
 
 ## Change Log

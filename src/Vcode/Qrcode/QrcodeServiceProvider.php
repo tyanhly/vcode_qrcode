@@ -33,14 +33,8 @@ class QrcodeServiceProvider extends ServiceProvider
     {
         // Register providers.
         $this->registerQrcode();
+        $this->registerBladeFunctions();
 
-        // extend blade engine by adding @qrcode compile function
-        $this->app['view.engine.resolver']->resolve('blade')
-            ->getCompiler()
-            ->extend(function ($view) {
-            $html = "<?php Qrcode::render($1); ?>";
-            return preg_replace("/@qrcode\((.*)\)/", $html, $view);
-        });
     }
 
     /**
@@ -53,6 +47,33 @@ class QrcodeServiceProvider extends ServiceProvider
         return array(
             'qrcode'
         );
+    }
+
+    public function registerBladeFunctions(){
+
+        // extend blade engine by adding @qrcode compile function
+        $this->app['view.engine.resolver']->resolve('blade')
+        ->getCompiler()
+        ->extend(function ($view) {
+            $html = "<?php Qrcode::render($1); ?>";
+            return preg_replace("/@qrcode\((.*)\)/", $html, $view);
+        });
+
+        // extend blade engine by adding @qrcodeBase64 compile function
+        $this->app['view.engine.resolver']->resolve('blade')
+        ->getCompiler()
+        ->extend(function ($view) {
+            $html = "<?php Qrcode::renderBase64($1); ?>";
+            return preg_replace("/@qrcodeBase64\((.*)\)/", $html, $view);
+        });
+
+        // extend blade engine by adding @qrcodeBase64Dom compile function
+        $this->app['view.engine.resolver']->resolve('blade')
+        ->getCompiler()
+        ->extend(function ($view) {
+            $html = "<?php Qrcode::renderBase64Dom($1); ?>";
+            return preg_replace("/@qrcodeBase64Dom\((.*)\)/", $html, $view);
+        });
     }
 
     /**

@@ -18,7 +18,7 @@ Edit require in `composer.json` file.
 "vcode/qrcode": "dev-master"
 ~~~
 
-You'll then need to run `composer install` 
+You'll then need to run `composer update` 
 
 File: `app/config/app.php` 
 Provider:

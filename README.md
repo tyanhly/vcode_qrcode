@@ -33,7 +33,7 @@ Facade
 ~~~php
 'aliases' => array(
 
-    'Qrcode' => 'Torann\Qrcode\Facades\Qrcode',
+    'Qrcode' => 'Vcode\Qrcode\Facades\Qrcode',
 
 )
 ~~~
@@ -46,8 +46,6 @@ $ php artisan config:publish vcode/qrcode
 
 ## Rendering
 ~~~php
-
-//reference https://developers.google.com/chart/infographics/docs/qr_codes
 
 Qrcode::render("https://github.com/tyanhly/laravel_qrcode")
 

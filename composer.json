@@ -3,7 +3,6 @@
     "description": "This is qrcode package. Specially, it fully support for laravel framework",
     "keywords": ["qrcode", "laravel", "zend"],
     "license": "MIT",
-    ""
     "authors": [
         {
             "name": "Tung Ly",

@@ -11,8 +11,11 @@ Reference https://developers.google.com/chart/infographics/docs/qr_code
 
 ## Installation
 
+- This is require: php5-gd for write image.
+Debian: apt-get install php5-gd
+RedHat: yum install gd gd-devel php-gd
 
-Edit require in `composer.json` file.
+- Edit require in `composer.json` file.
 
 ~~~
 "vcode/qrcode": "dev-master"
@@ -20,23 +23,26 @@ Edit require in `composer.json` file.
 
 You'll then need to run `composer update` 
 
+## LARAVEL USING
+
 File: `app/config/app.php` 
 
 Provider:
 ~~~php
-'providers' => array(
 
-    'Vcode\Qrcode\QrcodeServiceProvider',
+    'providers' => array(
+        'Vcode\Qrcode\QrcodeServiceProvider',
+    )
 
-)
 ~~~
+
 Facade
 ~~~php
-'aliases' => array(
 
-    'Qrcode' => 'Vcode\Qrcode\Facades\Qrcode',
-
-)
+    'aliases' => array(
+        'Qrcode' => 'Vcode\Qrcode\Facades\Qrcode',
+    )
+    
 ~~~
 
 Create configuration file using artisan
@@ -45,33 +51,60 @@ Create configuration file using artisan
 $ php artisan config:publish vcode/qrcode
 ~~~
 
-## Using
+#### Using In Controller
 ~~~php
 
-$value = "https://github.com/tyanhly/vcode_qrcode";
+    $value = "https://github.com/tyanhly/vcode_qrcode";
 
-//or for fully options
-//$value = array(
-//    'chs' => "250x250",
-//    'cht' => "qr",
-//    'chl' => "https://github.com/tyanhly/vcode_qrcode"
-//    'chld'=> "H|1",         // H(QML)|1, H|2, H|3, H|4, H|10, H|40,
-//    'choe'=> "UTF-8"        // UTF-8, Shift_JIS, ISO-8859-1
-//);
-
-Qrcode::storageImage($value, "/tmp/qrcode1.png");
-Qrcode::render($value);
-Qrcode::renderBase64($value);
-Qrcode::renderBase64Dom($value);
+    //or for fully options
+    //$value = array(
+    //    'chs' => "250x250",
+    //    'cht' => "qr",
+    //    'chl' => "https://github.com/tyanhly/vcode_qrcode"
+    //    'chld'=> "H|1",         // H(QML)|1, H|2, H|3, H|4, H|10, H|40,
+    //    'choe'=> "UTF-8"        // UTF-8, Shift_JIS, ISO-8859-1
+    //);
+    
+    //Qrcode::storageImage(array googleOption, string $destinate, string $logoPath, float $ratioOfLogoOnQrcode, int $qrCodeService);
+    Qrcode::storageImage($value, "/tmp/destination.png", "logo.png", 0.3);
+    
+    //Qrcode::render(array googleOption, int $qrCodeService);
+    Qrcode::render($value);
+    
+    //Qrcode::renderBase64(array googleOption, string $logoPath, float $ratioOfLogoOnQrcode, int $qrCodeService);
+    Qrcode::renderBase64($value, "logo.png");
+    
+    //Qrcode::renderBase64Dome(array googleOption, string $logoPath, float $ratioOfLogoOnQrcode, int $qrCodeService);
+    Qrcode::renderBase64Dom($value, "logo.png");
 
 ~~~
 
-## Using the Blade helper
+#### Using the Blade helper
 
 ~~~html
 @qrcode("https://github.com/tyanhly/vcode_qrcode")
-@qrcodeBase64Dom("https://github.com/tyanhly/vcode_qrcode")
-<img src="data:image/png;base64,@qrcodeBase64("https://github.com/tyanhly/vcode_qrcode")" />
+@qrcodeBase64Dom("https://github.com/tyanhly/vcode_qrcode", "logo.png", 0.5)
+<img src="data:image/png;base64,@qrcodeBase64("https://github.com/tyanhly/vcode_qrcode", "logo.png", 0.5)" />
+~~~
+
+## Using like php library
+
+~~~php
+
+    $qrcode = new Vcode\Qrcode\Qrcode(array(
+        'qrcode::google_config_default' => array(
+            'chs' => "250x250",
+            'cht' => "qr",
+            'chld'=> "H|1",         // H(QML)|1, H|2, H|3, H|4, H|10, H|40,
+            'choe'=> "UTF-8"        // UTF-8, Shift_JIS, ISO-8859-1
+        ),
+        'qrcode::template_simple' => '/path/of/template',
+        'qrcode::storage_dir'     => '/path/of/storage'
+    ));
+    $qrcode->storageImage($value, "/tmp/destination.png", "logo.png");
+    //$qrcode->render($value);
+    //$qrcode->renderBase64($value, "logo.png");
+    //$qrcode->renderBase64Dom($value, "logo.png");
 ~~~
 
 ## Change Log
@@ -79,3 +112,13 @@ Qrcode::renderBase64Dom($value);
 #### v1.0.0
 
 - First release
+
+#### v1.0.1
+
+- Base64 encoding
+- Storage image
+
+#### v1.1.0
+
+- Logo attach
+- Support like a library, not only for laravel. 

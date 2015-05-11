@@ -1,7 +1,7 @@
 {
     "name": "vcode/qrcode",
-    "description": "This is qrcode package. Specially, it fully support for laravel framework",
-    "keywords": ["qrcode", "laravel"],
+    "description": "This is php qrcode library. Specially, it fully support for laravel framework",
+    "keywords": ["qrcode", "php", "laravel"],
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +11,6 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": ">=4.1.1"
     },
     "autoload": {
         "psr-0": {

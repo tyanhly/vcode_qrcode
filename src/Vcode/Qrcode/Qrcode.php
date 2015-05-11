@@ -2,26 +2,42 @@
 
 namespace Vcode\Qrcode;
 
+use Illuminate\Support\Facades\Log;
+/**
+ *
+ * @author Tung Ly
+ */
 class Qrcode
 {
 
-    const TYPE_GOOGLE = 0x01;
+    const SERVICE_GOOGLE = 0x01;
+    const LOGO_RATIO = 0.3;
 
     /**
-     * Laravel application
+     * keys:
+     *     qrcode::template_simple
+     *     qrcode::google_config_default
+     *     qrcode::storage_dir
      *
-     * @var \Illuminate\Foundation\Application
+     * please see src/config/config.php for more detail
+     *
+     * @var array
      */
-    public static $app;
+    public static $config;
 
     /**
      *
-     * @param \Illuminate\Foundation\Application $app
+     * @param $config
      * @author Tung Ly
      */
-    public function __construct($app)
+    public function __construct($config = null)
     {
-        self::$app = $app;
+        if($config){
+            self::$config = $config;
+        }else{
+            throw new QrcodeException(QrcodeException::QRCODE_INIT_ERROR);
+        }
+
     }
 
     /**
@@ -30,13 +46,13 @@ class Qrcode
      * @param number $type
      * @author Tung Ly
      */
-    public function render($value, $type = self::TYPE_GOOGLE)
+    public function render($value, $type = self::SERVICE_GOOGLE)
     {
         $this->prepareValueData($value);
 
         switch ($type) {
 
-            case self::TYPE_GOOGLE:
+            case self::SERVICE_GOOGLE:
                 $result = GoogleQrcode::getQrcodeDom($value);
                 break;
 
@@ -48,23 +64,24 @@ class Qrcode
     }
 
     /**
-     *
-     * @param string|array $value
+     * @param unknown $value
+     * @param string $logoPath
+     * @param float $ratio
      * @param number $type
      * @author Tung Ly
      */
-    public function renderBase64Dom($value, $type = self::TYPE_GOOGLE)
+    public function renderBase64Dom($value, $logoPath=null, $ratio = Qrcode::LOGO_RATIO, $type = self::SERVICE_GOOGLE)
     {
         $this->prepareValueData($value);
 
         switch ($type) {
 
-            case self::TYPE_GOOGLE:
-                $result = GoogleQrcode::getQrcodeBase64Dom($value);
+            case self::SERVICE_GOOGLE:
+                $result = GoogleQrcode::getQrcodeBase64Dom($value, $logoPath, $ratio);
                 break;
 
             default:
-                $result = GoogleQrcode::getQrcodeBase64Dom($value);
+                $result = GoogleQrcode::getQrcodeBase64Dom($value, $logoPath, $ratio);
                 break;
         }
         echo $result;
@@ -72,49 +89,57 @@ class Qrcode
 
 
     /**
-     *
-     * @param string|array $value
+     * @param unknown $value
+     * @param string $logoPath
+     * @param float $ratio
      * @param number $type
      * @author Tung Ly
      */
-    public function renderBase64($value, $type = self::TYPE_GOOGLE)
+    public function renderBase64($value, $logoPath=null, $ratio  = Qrcode::LOGO_RATIO,  $type = self::SERVICE_GOOGLE)
     {
         $this->prepareValueData($value);
 
         switch ($type) {
 
-            case self::TYPE_GOOGLE:
-                $result = GoogleQrcode::getQrcodeBase64($value);
+            case self::SERVICE_GOOGLE:
+                $result = GoogleQrcode::getQrcodeBase64($value, $logoPath, $ratio);
                 break;
 
             default:
-                $result = GoogleQrcode::getQrcodeBase64($value);
+                $result = GoogleQrcode::getQrcodeBase64($value, $logoPath, $ratio);
                 break;
         }
         echo $result;
     }
+
     /**
-     *
-     * @param string|array $value
+     * @param unknown $value
+     * @param string $destination
+     * @param string $logoPath
+     * @param float $ratio
      * @param number $type
      * @author Tung Ly
      */
-    public function storageImage($value, $destination = null, $type = self::TYPE_GOOGLE)
+    public function storageImage($value, $destination = null, $logoPath=null, $ratio = Qrcode::LOGO_RATIO, $type = self::SERVICE_GOOGLE)
     {
         $this->prepareValueData($value);
         switch ($type) {
 
-            case self::TYPE_GOOGLE:
-                $result = GoogleQrcode::storageQrcodeImage($value, $destination);
+            case self::SERVICE_GOOGLE:
+                GoogleQrcode::storageQrcodeImage($value, $destination, $logoPath, $ratio);
                 break;
 
             default:
-                $result = GoogleQrcode::storageQrcodeImage($value, $destination);
+                GoogleQrcode::storageQrcodeImage($value, $destination, $logoPath, $ratio);
                 break;
         }
-        return $result;
     }
 
+    /**
+     * @param unknown $value
+     * @throws QrcodeException
+     * @author Tung Ly
+     */
     public function prepareValueData(&$value){
 
         if (is_string($value)) {

@@ -4,20 +4,22 @@ namespace Vcode\Qrcode;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Service Provider for laravel
+ * @author Tung Ly
+ */
 class QrcodeServiceProvider extends ServiceProvider
 {
 
     /**
      * Indicates if loading of the provider is deferred.
-     *
      * @var bool
      */
     protected $defer = false;
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
+     * @author Tung Ly
      */
     public function boot()
     {
@@ -28,6 +30,7 @@ class QrcodeServiceProvider extends ServiceProvider
      * Register the service provider.
      *
      * @return void
+     * @author Tung Ly
      */
     public function register()
     {
@@ -41,6 +44,7 @@ class QrcodeServiceProvider extends ServiceProvider
      * Get the services provided by the provider.
      *
      * @return array
+     * @author Tung Ly
      */
     public function provides()
     {
@@ -49,6 +53,10 @@ class QrcodeServiceProvider extends ServiceProvider
         );
     }
 
+    /**
+     * @return mixed
+     * @author Tung Ly
+     */
     public function registerBladeFunctions(){
 
         // extend blade engine by adding @qrcode compile function
@@ -78,16 +86,13 @@ class QrcodeServiceProvider extends ServiceProvider
 
     /**
      * Register qrcode provider.
-     *
-     * @return void
+     * @author Tung Ly
      */
     public function registerQrcode()
     {
-        // $this->app->bind('Qrcode', function () {
-        // return new Qrcode($app);
-        // });
         $this->app['qrcode'] = $this->app->share(function ($app) {
-            return new Qrcode($app);
+            $config = $app['config'];
+            return new Qrcode($config);
         });
     }
 }

@@ -1,4 +1,4 @@
-# Qrcode for Laravel
+# PHP Qrcode Library (support laravel framework)
 
 
 ----------

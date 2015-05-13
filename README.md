@@ -65,15 +65,40 @@ $ php artisan config:publish vcode/qrcode
     //    'choe'=> "UTF-8"        // UTF-8, Shift_JIS, ISO-8859-1
     //);
     
+    /**
+     * @param array googleOption
+     * @param string $destinate
+     * @param string $logoPath
+     * @param float $ratioOfLogoOnQrcode
+     * @param int $qrCodeService
+     */
     //Qrcode::storageImage(array googleOption, string $destinate, string $logoPath, float $ratioOfLogoOnQrcode, int $qrCodeService);
     Qrcode::storageImage($value, "/tmp/destination.png", "logo.png", 0.3);
     
+    
+    /**
+     * @param array googleOption
+     * @param int $qrCodeService
+     */
     //Qrcode::render(array googleOption, int $qrCodeService);
     Qrcode::render($value);
     
+    /**
+     * @param array googleOption
+     * @param string $logoPath
+     * @param float $ratioOfLogoOnQrcode
+     * @param int $qrCodeService
+     */
     //Qrcode::renderBase64(array googleOption, string $logoPath, float $ratioOfLogoOnQrcode, int $qrCodeService);
     Qrcode::renderBase64($value, "logo.png");
     
+    
+    /**
+     * @param array googleOption
+     * @param string $logoPath
+     * @param float $ratioOfLogoOnQrcode
+     * @param int $qrCodeService
+     */
     //Qrcode::renderBase64Dome(array googleOption, string $logoPath, float $ratioOfLogoOnQrcode, int $qrCodeService);
     Qrcode::renderBase64Dom($value, "logo.png");
 
@@ -91,20 +116,24 @@ $ php artisan config:publish vcode/qrcode
 
 ~~~php
 
+    //Please, reference <this source>/example for more detail
+    
+    include 'vendor/autoload.php';
     $qrcode = new Vcode\Qrcode\Qrcode(array(
-        'qrcode::google_config_default' => array(
-            'chs' => "250x250",
-            'cht' => "qr",
-            'chld'=> "H|1",         // H(QML)|1, H|2, H|3, H|4, H|10, H|40,
-            'choe'=> "UTF-8"        // UTF-8, Shift_JIS, ISO-8859-1
-        ),
-        'qrcode::template_simple' => '/path/of/template',
-        'qrcode::storage_dir'     => '/path/of/storage'
-    ));
-    $qrcode->storageImage($value, "/tmp/destination.png", "logo.png");
+            'qrcode::google_config_default' => array(
+                'chs' => "250x250",
+                'cht' => "qr",
+                'chld'=> "H|1",         // H(QML)|1, H|2, H|3, H|4, H|10, H|40,
+                'choe'=> "UTF-8"        // UTF-8, Shift_JIS, ISO-8859-1
+            ),
+            'qrcode::template_simple' => './template',
+            'qrcode::storage_dir'     => '/tmp'
+        ));
+    $value = "MECARD:N:Tung,Ly;ADR:124 Cao Xuan Duc 12w D8 HCM city;"
+           . "TEL:+84906667100;EMAIL:tyanhly@gmail.com;;";
     //$qrcode->render($value);
-    //$qrcode->renderBase64($value, "logo.png");
-    //$qrcode->renderBase64Dom($value, "logo.png");
+    $qrcode->renderBase64Dom($value, "http://transcosmos.com/wp-content/uploads/2014/06/logo3.png", 0.7);
+    
 ~~~
 
 ## Change Log

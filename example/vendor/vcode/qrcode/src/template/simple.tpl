@@ -1,1 +1,0 @@
-<img src="%%URI_IMG_QRCODE%%" class="vcode-qrcode" />

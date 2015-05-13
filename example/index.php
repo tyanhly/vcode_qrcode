@@ -10,7 +10,7 @@ $qrcode = new Vcode\Qrcode\Qrcode(array(
         'qrcode::template_simple' => './template',
         'qrcode::storage_dir'     => '/tmp'
     ));
-$value = "MECARD:N:Tung,Ly;ADR:124 Cao Xuan Duc;"
+$value = "MECARD:N:Tung,Ly;ADR:124 Cao Xuan Duc 12w D8 HCM city;"
        . "TEL:+84906667100;EMAIL:tyanhly@gmail.com;;";
 $qrcode->render($value);
 $qrcode->renderBase64Dom($value, "http://transcosmos.com/wp-content/uploads/2014/06/logo3.png", 0.7);

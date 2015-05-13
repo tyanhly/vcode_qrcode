@@ -1,0 +1,5 @@
+{
+    "require": {
+        "vcode/qrcode": "1.1.0"
+    }
+}

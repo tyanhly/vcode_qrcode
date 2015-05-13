@@ -17,11 +17,20 @@ Reference https://developers.google.com/chart/infographics/docs/qr_code
 
       RedHat: yum install gd gd-devel php-gd
 ~~~
-- Edit require in `composer.json` file.
+
+- Update require in `composer.json` file.
 ~~~
       "vcode/qrcode": "dev-master"
 ~~~
-You'll then need to run `composer update` 
+   You'll then need to run 
+~~~
+      composer update
+~~~
+
+  Or
+~~~
+      composer require "vcode/qrcode":1.1.0
+~~~
 
 ## LARAVEL USING
 

@@ -12,7 +12,9 @@ Reference https://developers.google.com/chart/infographics/docs/qr_code
 ## Installation
 
 - This is require: php5-gd for write image.
+
 Debian: apt-get install php5-gd
+
 RedHat: yum install gd gd-devel php-gd
 
 - Edit require in `composer.json` file.
@@ -107,9 +109,11 @@ $ php artisan config:publish vcode/qrcode
 #### Using the Blade helper
 
 ~~~html
+
 @qrcode("https://github.com/tyanhly/vcode_qrcode")
 @qrcodeBase64Dom("https://github.com/tyanhly/vcode_qrcode", "logo.png", 0.5)
 <img src="data:image/png;base64,@qrcodeBase64("https://github.com/tyanhly/vcode_qrcode", "logo.png", 0.5)" />
+
 ~~~
 
 ## Using like php library
@@ -135,6 +139,10 @@ $ php artisan config:publish vcode/qrcode
     $qrcode->renderBase64Dom($value, "http://transcosmos.com/wp-content/uploads/2014/06/logo3.png", 0.7);
     
 ~~~
+
+## Example
+  
+- https://github.com/tyanhly/vcode_qrcode/tree/master/example
 
 ## Change Log
 

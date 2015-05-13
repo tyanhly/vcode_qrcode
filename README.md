@@ -5,7 +5,7 @@
 
 ## Introduction
 
-This is package generate Qrcode using some services like google qrcode. Currently, It only support google service. This package also support <b>attaching logo</b> into qrcode. In Laravel framework, it fully support for using facade, blade template.
+This is package generate Qrcode using some services like google qrcode (currently, it only support google service). This package also support <b>attaching logo</b> into qrcode. In Laravel framework, it fully support for using facade, blade helper.
 
 Reference https://developers.google.com/chart/infographics/docs/qr_code
 

@@ -1,7 +1,7 @@
 {
     "name": "vcode/qrcode",
-    "description": "This is php qrcode library. Specially, it fully support for laravel framework",
-    "keywords": ["qrcode", "php", "laravel"],
+    "description": "This is package generate Qrcode using some services like google qrcode. This package also support attaching logo into qrcode. In Laravel framework, it fully support for using facade, blade helper.",
+    "keywords": ["qrcode", "php", "laravel", "logo"],
     "license": "MIT",
     "authors": [
         {

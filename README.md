@@ -29,7 +29,7 @@ Reference https://developers.google.com/chart/infographics/docs/qr_code
 
 - Or
 ~~~
-      composer require "vcode/qrcode":1.1.0
+      composer require "vcode/qrcode":"dev-master"
 ~~~
 
 ## LARAVEL USING

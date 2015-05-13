@@ -22,12 +22,12 @@ Reference https://developers.google.com/chart/infographics/docs/qr_code
 ~~~
       "vcode/qrcode": "dev-master"
 ~~~
-   You'll then need to run 
+- You'll then need to run 
 ~~~
       composer update
 ~~~
 
-  Or
+- Or
 ~~~
       composer require "vcode/qrcode":1.1.0
 ~~~

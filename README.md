@@ -20,7 +20,9 @@ Reference https://developers.google.com/chart/infographics/docs/qr_code
 - Edit require in `composer.json` file.
 
 ~~~
-"vcode/qrcode": "dev-master"
+
+  "vcode/qrcode": "dev-master"
+  
 ~~~
 
 You'll then need to run `composer update` 

@@ -12,15 +12,15 @@ Reference https://developers.google.com/chart/infographics/docs/qr_code
 ## Installation
 
 - This is require: php5-gd for write image.
+~~~
+      Debian: apt-get install php5-gd
 
-   Debian: apt-get install php5-gd
-
-   RedHat: yum install gd gd-devel php-gd
-
+      RedHat: yum install gd gd-devel php-gd
+~~~
 - Edit require in `composer.json` file.
-
-  "vcode/qrcode": "dev-master"
-
+~~~
+      "vcode/qrcode": "dev-master"
+~~~
 You'll then need to run `composer update` 
 
 ## LARAVEL USING

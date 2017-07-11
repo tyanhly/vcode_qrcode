@@ -140,8 +140,8 @@ $ php artisan config:publish vcode/qrcode
             'qrcode::template_simple' => './template',
             'qrcode::storage_dir'     => '/tmp'
         ));
-    $value = "MECARD:N:Tung,Ly;ADR:124 Cao Xuan Duc 12w D8 HCM city;"
-           . "TEL:+84906667100;EMAIL:tyanhly@gmail.com;;";
+    $value = "MECARD:N:XXXXX;ADR:xxx xxxxx xxxxxx xx xxx city;"
+           . "TEL:+XXXXXXXXX;EMAIL:xxxxx@gmail.com;;";
     //$qrcode->render($value);
     $qrcode->renderBase64Dom($value, "logo.png", 0.7);
     
